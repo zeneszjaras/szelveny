@@ -1,0 +1,14 @@
+name: 'Értesítés pre_high_value.json frissítésre'
+on:
+  push:
+    paths:
+      - 'pre_high_value.json'
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Értesítés küldése webhookon keresztülS
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+               --data '{"text":"📢 A pre_high_value.json fájl frissült!"}' \
+               ${{ secrets.NOTIFY_WEBHOOK_URL }}
